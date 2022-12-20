@@ -30,7 +30,7 @@ def answer(question):
     return response["choices"][0]["text"].split("\n")[-1]
 
 def get_text():
-    input_text = st.text_input("あなた: ", "", key="input")
+    input_text = st.text_input("あなた: ", key="input")
     return input_text 
 
 user_input = get_text()
