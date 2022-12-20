@@ -42,8 +42,8 @@ if user_input:
     st.session_state.generated.append(output)
 
 if st.session_state['generated']:
-    if 'input' in st.session_state:
-        st.session_state["input"] = ""
+#     if 'input' in st.session_state:
+#         st.session_state["input"] = ""
     for i in range(len(st.session_state['generated'])-1, -1, -1):
         message(st.session_state["generated"][i], key=str(i))
         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
