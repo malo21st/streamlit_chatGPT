@@ -1,7 +1,6 @@
 import streamlit as st
 from streamlit_chat import message
 import openai
-import requests
 
 st.set_page_config(
     page_title="Streamlit Chat - Demo",
