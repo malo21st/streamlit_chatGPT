@@ -17,8 +17,8 @@ if 'generated' not in st.session_state:
 if 'past' not in st.session_state:
     st.session_state['past'] = []
 
-def clear_text():
-    st.session_state['input'] = ""
+# def clear_text():
+#     st.session_state['input'] = ""
     
 def answer(question):
     response = openai.Completion.create(
@@ -45,7 +45,7 @@ if user_input:
     st.session_state.generated.append(output)
 
 if st.session_state['generated']:
-    clear_text()
+#     clear_text()
     for i in range(len(st.session_state['generated'])-1, -1, -1):
         message(st.session_state["generated"][i], key=str(i))
         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
