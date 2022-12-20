@@ -1,5 +1,6 @@
 import streamlit as st
 from streamlit_chat import message
+import openai
 import requests
 
 st.set_page_config(
@@ -7,11 +8,11 @@ st.set_page_config(
     page_icon=":robot:"
 )
 
+openai.api_key = st.secrets['api_key']}
 # API_URL = "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill"
 # headers = {"Authorization": st.secrets['api_key']}
 
-st.header("Streamlit Chat - Demo")
-st.markdown("[Github](https://github.com/ai-yash/st-chat)")
+st.header("Streamlit & GPT-Chat - Demo")
 
 if 'generated' not in st.session_state:
     st.session_state['generated'] = []
@@ -19,9 +20,17 @@ if 'generated' not in st.session_state:
 if 'past' not in st.session_state:
     st.session_state['past'] = []
 
-# def query(payload):
-# 	response = requests.post(API_URL, headers=headers, json=payload)
-# 	return response.json()
+def answer(question):
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=question,
+        temperature=0,
+        max_tokens=200,
+        top_p=1.0,
+        frequency_penalty=0.0,
+        presence_penalty=0.0,
+    )
+    return response["choices"][0]["text"].split("\n")[-1]
 
 def get_text():
     input_text = st.text_input("You: ", key="input")
@@ -31,14 +40,7 @@ def get_text():
 user_input = get_text()
 
 if user_input:
-    output = user_input * 2
-#     output = query({
-#         "inputs": {
-#             "past_user_inputs": st.session_state.past,
-#             "generated_responses": st.session_state.generated,
-#             "text": user_input,
-#         },"parameters": {"repetition_penalty": 1.33},
-#     })
+    output = answer(user_input)
 
     st.session_state.past.append(user_input)
     st.session_state.generated.append(output)
