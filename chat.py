@@ -17,6 +17,9 @@ if 'generated' not in st.session_state:
 if 'past' not in st.session_state:
     st.session_state['past'] = []
 
+if 'user_input' not in st.session_state:
+    st.session_state['user_input'] = ""
+
 def answer(question):
     response = openai.Completion.create(
         model="text-davinci-003",
@@ -29,21 +32,19 @@ def answer(question):
     )
     return response["choices"][0]["text"].split("\n")[-1]
 
-def get_text():
-    input_text = st.text_input("あなた: ", key="input")
-    return input_text 
+def input_and_clear():
+    st.session_state['user_input'] = st.session_state['input']
+    st.session_state['input'] = ""
 
-user_input = get_text()
+st.text_input("あなた: ", key="input", on_change=input_and_clear)
 
-if user_input:
-    output = answer(user_input)
+if st.session_state['user_input']:
+    output = answer(st.session_state['user_input'])
 
-    st.session_state.past.append(user_input)
+    st.session_state.past.append(st.session_state['user_input'])
     st.session_state.generated.append(output)
 
 if st.session_state['generated']:
-#     if 'input' in st.session_state:
-#         st.session_state["input"] = ""
     for i in range(len(st.session_state['generated'])-1, -1, -1):
         message(st.session_state["generated"][i], key=str(i))
         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
