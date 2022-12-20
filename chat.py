@@ -9,7 +9,7 @@ st.set_page_config(
 
 openai.api_key = st.secrets['api_key']
 
-st.header("Streamlit & chatGPT - Demo")
+st.header("Streamlit-chat & chatGPT - Demo")
 
 if 'generated' not in st.session_state:
     st.session_state['generated'] = []
