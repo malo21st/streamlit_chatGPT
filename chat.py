@@ -8,9 +8,7 @@ st.set_page_config(
     page_icon=":robot:"
 )
 
-openai.api_key = st.secrets['api_key']}
-# API_URL = "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill"
-# headers = {"Authorization": st.secrets['api_key']}
+openai.api_key = st.secrets['api_key']
 
 st.header("Streamlit & GPT-Chat - Demo")
 
