@@ -36,7 +36,7 @@ def input_and_clear():
     st.session_state['user_input'] = st.session_state['input']
     st.session_state['input'] = ""
 
-st.text_input("Input message :", key="input", on_change=input_and_clear)
+st.text_input("input message :", key="input", on_change=input_and_clear)
 
 if st.session_state['user_input']:
     output = answer(st.session_state['user_input'])
