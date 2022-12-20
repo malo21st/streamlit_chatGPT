@@ -25,7 +25,7 @@ def answer(question):
         model="text-davinci-003",
         prompt=question,
         temperature=0,
-        max_tokens=200,
+        max_tokens=300,
         top_p=1.0,
         frequency_penalty=0.0,
         presence_penalty=0.0,
@@ -40,7 +40,6 @@ st.text_input("input message :", key="input", on_change=input_and_clear)
 
 if st.session_state['user_input']:
     output = answer(st.session_state['user_input'])
-
     st.session_state.past.append(st.session_state['user_input'])
     st.session_state.generated.append(output)
 
