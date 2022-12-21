@@ -25,11 +25,11 @@ def answer(question):
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=question,
-        temperature=0,
+        temperature=0.9,
         max_tokens=300,
-        top_p=1.0,
+        top_p=1,
         frequency_penalty=0.0,
-        presence_penalty=0.0,
+        presence_penalty=0.6,
     )
     return response.choices[0].text.split("\n")[-1]
 
