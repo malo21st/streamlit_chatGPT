@@ -4,7 +4,7 @@ from streamlit_chat import message
 import openai
 
 st.set_page_config(
-    page_title="Streamlit Chat - Demo",
+    page_title="Streamlit & chatGPT - Demo",
     page_icon=":robot:"
 )
 
