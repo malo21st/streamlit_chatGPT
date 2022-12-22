@@ -7,8 +7,8 @@ openai.api_key = st.secrets['api_key']
 
 st.set_page_config(
     page_title = "ChatGPT chatbot",
-#     page_icon = "🤖"
-    page_icon = st.image(".favicon.png")
+    page_icon = "🤖"
+#     page_icon = st.image("favicon.png")
 )
 
 if 'generated' not in st.session_state:
