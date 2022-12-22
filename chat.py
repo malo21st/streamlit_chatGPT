@@ -6,7 +6,7 @@ from PIL import Image
 
 openai.api_key = st.secrets['api_key']
 
-favicon = Image.open('sunrise.jpg')
+favicon = Image.open('favicon.png')
 
 st.set_page_config(
     page_title="ChatGPT chatbot",
