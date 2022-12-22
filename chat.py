@@ -10,19 +10,14 @@ st.set_page_config(
     page_icon="🤖"
 )
 
-if st.session_state.is_first_time:
+if 'generated' not in st.session_state:
     st.session_state['generated'] = []
+
+if 'past' not in st.session_state:
     st.session_state['past'] = []
+
+if 'user_input' not in st.session_state:
     st.session_state['user_input'] = ""
-
-# if 'generated' not in st.session_state:
-#     st.session_state['generated'] = []
-
-# if 'past' not in st.session_state:
-#     st.session_state['past'] = []
-
-# if 'user_input' not in st.session_state:
-#     st.session_state['user_input'] = ""
 
 def answer_chatGPT(question):
     response = openai.Completion.create(
