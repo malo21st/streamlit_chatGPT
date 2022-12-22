@@ -2,16 +2,13 @@
 import streamlit as st
 from streamlit_chat import message
 import openai
-from PIL import Image
 
 openai.api_key = st.secrets['api_key']
 
-favicon = Image.open('favicon.png')
-
 st.set_page_config(
-    page_title="ChatGPT chatbot",
-#     page_icon="🤖"
-    page_icon=st.image("favicon.png")
+    page_title = "ChatGPT chatbot",
+    page_icon = "🤖"
+#     page_icon = st.image("favicon.png")
 )
 
 if 'generated' not in st.session_state:
