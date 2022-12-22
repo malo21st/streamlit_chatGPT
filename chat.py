@@ -3,25 +3,18 @@ import streamlit as st
 from streamlit_chat import message
 import openai
 
+openai.api_key = st.secrets['api_key']
+
 st.set_page_config(
     page_title="Streamlit-chat & chatGPT",
     page_icon="🤖"
 )
 
-openai.api_key = st.secrets['api_key']
+st.session_state['generated'] = []  if 'generated' not in st.session_state
+st.session_state['past'] = []       if 'past' not in st.session_state
+st.session_state['user_input'] = "" if 'user_input' not in st.session_state
 
-st.header("Streamlit-chat & chatGPT - Demo")
-
-if 'generated' not in st.session_state:
-    st.session_state['generated'] = []
-
-if 'past' not in st.session_state:
-    st.session_state['past'] = []
-
-if 'user_input' not in st.session_state:
-    st.session_state['user_input'] = ""
-
-def answer(question):
+def answer_chatGPT(question):
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=question,
@@ -37,10 +30,12 @@ def input_and_clear():
     st.session_state['user_input'] = st.session_state['input']
     st.session_state['input'] = ""
 
+# layout
+st.header("Streamlit-chat & chatGPT - Demo")
 st.text_input("**input message :**", key="input", on_change=input_and_clear)
 
 if st.session_state['user_input']:
-    output = answer(st.session_state['user_input'])
+    output = answer_chatGPT(st.session_state['user_input'])
     st.session_state.past.append(st.session_state['user_input'])
     st.session_state.generated.append(output)
 
