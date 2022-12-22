@@ -6,7 +6,7 @@ import openai
 openai.api_key = st.secrets['api_key']
 
 st.set_page_config(
-    page_title="streamlit-chat & ChatGPT",
+    page_title="ChatGPT chatbot",
     page_icon="🤖"
 )
 
