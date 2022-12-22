@@ -36,7 +36,7 @@ def input_and_clear():
     st.session_state['input'] = ""
 
 # layout
-st.header("streamlit-chat & ChatGPT - Demo")
+st.header("streamlit-chat & ChatGPT - Chatbot Demo")
 st.text_input("**input message :**", key="input", on_change=input_and_clear)
 
 if st.session_state['user_input']:
