@@ -10,9 +10,9 @@ st.set_page_config(
     page_icon="🤖"
 )
 
-st.session_state['generated'] = []  if 'generated' not in st.session_state
-st.session_state['past'] = []       if 'past' not in st.session_state
-st.session_state['user_input'] = "" if 'user_input' not in st.session_state
+st.session_state['generated'] = []  if 'generated' not in st.session_state else pass  
+st.session_state['past'] = []       if 'past' not in st.session_state else pass
+st.session_state['user_input'] = "" if 'user_input' not in st.session_state else pass
 
 def answer_chatGPT(question):
     response = openai.Completion.create(
