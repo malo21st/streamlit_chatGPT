@@ -31,7 +31,7 @@ def answer(question):
         frequency_penalty=0.0,
         presence_penalty=0.0,
     )
-    return response.choices[0].text.split("\n")[-1]
+    return response.choices[0].text[2:]
 
 def input_and_clear():
     st.session_state['user_input'] = st.session_state['input']
