@@ -5,12 +5,12 @@ import openai
 
 openai.api_key = st.secrets['api_key']
 
-# with open("favicon.svg", "r") as f: svg_str = f.read()
+with open("favicon.txt", "rt") as f: svg_str = f.read()
     
 st.set_page_config(
     page_title="ChatGPT chatbot",
-    page_icon="🤖"
-#     page_icon=st.image(svg_str)
+#     page_icon="🤖"
+    page_icon=st.image(svg_str)
 )
 
 if 'generated' not in st.session_state:
