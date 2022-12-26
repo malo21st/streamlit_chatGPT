@@ -19,8 +19,12 @@ if 'past' not in st.session_state:
 
 if 'user_input' not in st.session_state:
     st.session_state['user_input'] = ""
+    
+if 'prompt_text' not in st.session_state:
+    st.session_state['prompt_text'] = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\n"
 
 def answer_ChatGPT(question):
+    st.session_state['prompt_text'] += f"Human: {question}\nAI:"
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=question,
@@ -30,7 +34,9 @@ def answer_ChatGPT(question):
         frequency_penalty=0.0,
         presence_penalty=0.0,
     )
-    return response.choices[0].text[2:]
+    response_text = response.choices[0].text[2:]
+    st.session_state['prompt_text'] += f" {response_text}\n"
+    return response_text
 
 def input_and_clear():
     st.session_state['user_input'] = st.session_state['input']
