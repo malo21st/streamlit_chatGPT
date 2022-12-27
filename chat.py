@@ -33,6 +33,7 @@ def answer_ChatGPT(question):
         top_p=1,
         frequency_penalty=0.0,
         presence_penalty=0.0,
+        stop=[" Human:", " AI:"]
     )
     response_text = response.choices[0].text[2:]
     st.session_state['prompt_text'] += f" {response_text}\n"
