@@ -26,8 +26,8 @@ if 'prompt_text' not in st.session_state:
 def answer_ChatGPT(question):
     st.session_state['prompt_text'] += f"Human: {question}\nAI:"
     response = openai.Completion.create(
-        model="text-davinci-003",
-#         model="gpt-3.5-turbo-0301",
+#         model="text-davinci-003",
+        model="gpt-3.5-turbo",
         prompt=question,
         temperature=0.9,
         max_tokens=300,
