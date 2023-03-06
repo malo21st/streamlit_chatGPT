@@ -27,7 +27,7 @@ def answer_ChatGPT(question):
     st.session_state['prompt_text'] += f"Human: {question}\nAI:"
     response = openai.Completion.create(
         model="text-davinci-003",
-        prompt=question,
+        prompt=st.session_state['prompt_text'],
         temperature=0.9,
         max_tokens=300,
         top_p=1,
