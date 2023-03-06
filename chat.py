@@ -27,7 +27,6 @@ def answer_ChatGPT(question):
     st.session_state['prompt_text'] += f"Human: {question}\nAI:"
     response = openai.Completion.create(
         model="text-davinci-003",
-#         model="gpt-3.5-turbo",
         prompt=question,
         temperature=0.9,
         max_tokens=300,
@@ -45,7 +44,7 @@ def input_and_clear():
     st.session_state['input'] = ""
 
 # layout
-st.header("streamlit-chat & GPT-3.5 - Chatbot Demo")
+st.header("streamlit-chat & GPT-3 - Chatbot Demo")
 st.text_input("**input message :**", key="input", on_change=input_and_clear)
 
 if st.session_state['user_input']:
