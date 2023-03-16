@@ -23,7 +23,7 @@ if 'user_input' not in st.session_state:
 if 'prompt_text' not in st.session_state:
     st.session_state['prompt_text'] = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\n"
 
-def answer_ChatGPT(question):
+def answer_GPT3(question):
     st.session_state['prompt_text'] += f"Human: {question}\nAI:"
     response = openai.Completion.create(
         model="text-davinci-003",
@@ -48,7 +48,7 @@ st.header("streamlit-chat & GPT-3 - Chatbot Demo")
 st.text_input("**input message :**", key="input", on_change=input_and_clear)
 
 if st.session_state['user_input']:
-    output = answer_ChatGPT(st.session_state['user_input'])
+    output = answer_GPT3(st.session_state['user_input'])
     st.session_state.past.append(st.session_state['user_input'])
     st.session_state.generated.append(output)
 
