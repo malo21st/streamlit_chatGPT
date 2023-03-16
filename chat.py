@@ -11,8 +11,10 @@ st.set_page_config(
     page_icon = Image.open("favicon.png")
 )
 
-if 'generated' not in st.session_state:
-    st.session_state['generated'] = []
+st.session_state['generated'] = [] if 'generated' not in st.session_state else None
+
+# if 'generated' not in st.session_state:
+#     st.session_state['generated'] = []
 
 if 'past' not in st.session_state:
     st.session_state['past'] = []
