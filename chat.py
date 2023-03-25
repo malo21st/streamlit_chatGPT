@@ -21,23 +21,18 @@ if 'user_input' not in st.session_state:
     st.session_state['user_input'] = ""
     
 if 'prompt_text' not in st.session_state:
-    st.session_state['prompt_text'] = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\n"
+    st.session_state['prompt_text'] = [{"role": "system", "content": "You are a helpful assistant."}]
 
 def answer_GPT3(question):
-    st.session_state['prompt_text'] += f"Human: {question}\nAI:"
+    st.session_state['prompt_text'] += {"role": "user", "content": question}
     response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt=st.session_state['prompt_text'],
+        model="gpt-3.5-turbo",
+        messages=st.session_state['prompt_text'],
         temperature=0.9,
-        max_tokens=300,
-        top_p=1,
-        frequency_penalty=0.0,
-        presence_penalty=0.6,
-        stop=[" Human:", " AI:"]
     )
-    response_text = response.choices[0].text
-    st.session_state['prompt_text'] += f" {response_text}\n"
-    return response_text
+    response_json = response.choices[0]['message']
+    st.session_state['prompt_text'] += {"role": "assistant", "content": response_json['content']}
+    return response_json['content']
 
 def input_and_clear():
     st.session_state['user_input'] = st.session_state['input']
