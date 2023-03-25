@@ -25,6 +25,7 @@ if 'prompt_text' not in st.session_state:
 
 def answer_GPT3(question):
     st.session_state['prompt_text'] += [{"role": "user", "content": question}]
+    st.write(st.session_state['prompt_text'])
     response = openai.Completion.create(
         model="gpt-3.5-turbo",
         messages=st.session_state['prompt_text'],
