@@ -29,7 +29,7 @@ def answer_GPT3(question):
     st.write(st.session_state['prompt_text'])
     response = openai.Completion.create(
         model="gpt-3.5-turbo",
-        messages=st.session_state['prompt_text'],
+        messages=st.session_state['prompt_text']
     )
     response_json = response.choices[0]['message']
     st.session_state['prompt_text'] += [{"role": "assistant", "content": response_json['content']}]
