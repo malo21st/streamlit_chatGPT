@@ -7,7 +7,7 @@ from PIL import Image
 openai.api_key = st.secrets['api_key']
 
 st.set_page_config(
-    page_title = "GPT-3 chatbot",
+    page_title = "ChatGPT chatbot",
     page_icon = Image.open("favicon.png")
 )
 
@@ -39,7 +39,7 @@ def input_and_clear():
     st.session_state['input'] = ""
 
 # layout
-st.header("streamlit-chat & GPT-3 - Chatbot Demo")
+st.header("streamlit-chat & ChatGPT - Chatbot Demo")
 st.text_input("**input message :**", key="input", on_change=input_and_clear)
 
 if st.session_state['user_input']:
